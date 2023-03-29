@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM node:16 as BACKEND
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git ffmpeg
 
 WORKDIR /app
 
