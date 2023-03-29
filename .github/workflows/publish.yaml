@@ -1,0 +1,25 @@
+name: Docker Publish
+
+on:
+    push:
+        tags:
+            - "v*"
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        steps:
+            - uses: actions/checkout@v2
+            - name: Log into registry
+              run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            - name: Build frontend
+              run: docker build --target FRONTEND -t ghcr.io/classaxion/parrot-disco-frontend:${{github.ref_name}} .
+            - name: Publish frontend
+              run: docker push ghcr.io/classaxion/parrot-disco-frontend:${{github.ref_name}}
+            - name: Build backend
+              run: docker build --target BACKEND -t ghcr.io/classaxion/parrot-disco-backend:${{github.ref_name}} .
+            - name: Publish backend
+              run: docker push ghcr.io/classaxion/parrot-disco-backend:${{github.ref_name}}
