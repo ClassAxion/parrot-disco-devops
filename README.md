@@ -4,19 +4,15 @@
 
 2. Install docker https://docs.docker.com/engine/install/ubuntu/
 
-3. Configure what you need in `.env` file (mostly your Parrot Disco IP)
+3. Configure what you need in `.env` file (mostly your Parrot Disco IP and ZeroTier network ID)
 
-4. Run `docker compose up -d` to start all apps
+4. Start dashboard in background `docker compose up -d frontend-app`
 
-5. Check server logs `docker compose logs -f backend-app`
+5. Start zerotier in background (if you don't have zerotier running) `docker compose up -d zerotier-app`
 
-6. Stop the application `docker compose down`
+6. Start backend in foreground `docker compose up backend-app`
 
-## Running in foreground
+7. Stop it using CTRL+C
 
-If you want, you can start frontend app in background but start backend app only when you need it.
-
-1. Start frontend by `docker compose up -d frontend-app`
-2. Start backend when you need it by `docker compose up backend-app`
-
-Now you can see backend logs and you can kill it by pressing CTRL+C
+Dashboard and ZeroTier can run freely in background.
+Now you can reach the Dashboard on your IP on port 8000
