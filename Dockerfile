@@ -24,10 +24,18 @@ RUN npm run build
 
 CMD ["npm","run","start"]
 
-FROM nginx as FRONTEND
+FROM nginx:1.15-alpine as FRONTEND
 
 COPY --from=FRONTEND-BUILDER /app/dist /usr/share/nginx/html
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/nginx-default.conf.template /etc/nginx/conf.d/default.conf.template
+
+COPY ./nginx/docker-entrypoint.sh /
 
 EXPOSE 80
+
+RUN ["chmod", "+x", "/docker-entrypoint.sh"]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
