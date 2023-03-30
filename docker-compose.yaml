@@ -1,7 +1,7 @@
 version: "3.8"
 services:
     frontend-app:
-        image: ghcr.io/classaxion/parrot-disco-frontend:v1.0.1-alpha2
+        image: ghcr.io/classaxion/parrot-disco-frontend:v1.0.1-alpha3
         restart: unless-stopped
         ports:
             - 8000:80
@@ -10,7 +10,7 @@ services:
         environment:
             BACKEND_PORT: 18200
     backend-app:
-        image: ghcr.io/classaxion/parrot-disco-backend:v1.0.1-alpha2
+        image: ghcr.io/classaxion/parrot-disco-backend:v1.0.1-alpha3
         restart: unless-stopped
         network_mode: host
         env_file: .env
