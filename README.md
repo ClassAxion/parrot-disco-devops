@@ -1,3 +1,7 @@
+## Video Tutorial
+
+If you want Video Tutorial, its available here: [https://www.youtube.com/watch?v=zeYQufgCSvA](https://www.youtube.com/watch?v=zeYQufgCSvA)
+
 ## Quick start
 
 1. Clone this repo using `git clone https://github.com/ClassAxion/parrot-disco-devops`
