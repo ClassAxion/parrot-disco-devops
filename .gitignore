@@ -1,2 +1,4 @@
 .env
 tmp
+logs/*
+!logs/.gitkeep
