@@ -1,22 +1,22 @@
 version: "3.8"
 services:
     frontend-app:
-        image: ghcr.io/classaxion/parrot-disco-frontend:v1.0.0-alpha1
+        image: parrot-frontend
         restart: unless-stopped
         ports:
             - 8000:80
-    backend-app:
-        image: ghcr.io/classaxion/parrot-disco-backend:v1.0.0-alpha1
-        restart: unless-stopped
         extra_hosts:
             - "host.docker.internal:host-gateway"
-        ports:
-            - 9988:9988
-            - 55004:55004
-            - 55005:55005
+        environment:
+            BACKEND_PORT: 18200
+    backend-app:
+        image: parrot-backend
+        restart: unless-stopped
+        network_mode: host
         env_file: .env
         environment:
             NODE_ENV: production
+            PORT: 18200
     zerotier-app:
         image: zerotier/zerotier:latest
         command:

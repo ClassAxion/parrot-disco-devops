@@ -22,14 +22,12 @@ RUN npm i
 
 RUN npm run build
 
-EXPOSE 3000
-
 CMD ["npm","run","start"]
 
 FROM nginx as FRONTEND
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-
 COPY --from=FRONTEND-BUILDER /app/dist /usr/share/nginx/html
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
