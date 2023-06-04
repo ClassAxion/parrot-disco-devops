@@ -1,5 +1,7 @@
 FROM node:12 as FRONTEND-BUILDER
 
+RUN sed -i 's/stable\/updates/stable-security\/updates/' /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y git
 
 WORKDIR /app
